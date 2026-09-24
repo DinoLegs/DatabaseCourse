@@ -34,9 +34,10 @@ JRPGOnline is a new game that is being developed by SickGamesCorp. The game is a
 multiplayer role playing game. We are tasked with writing the database for the game. 
 
 The game has login with unique username and password. Every profile can create and play as 
-arbitrarily many characters. The characters have a name, class, level and stats (strength, 
-dexterity, constitution, intelligence). Every character starts at level 0. Each class comes 
-with base stats and you get a boost to your stats for each level given by the formula:
+arbitrarily many characters, but a player can't have two characters with the same name. The 
+characters have a name, class, level and stats (strength, dexterity, constitution, 
+intelligence). Every character starts at level 0. Each class comes with base stats and you 
+get a boost to your stats for each level given by the formula:
 
 `stat = baseStat + modifier * level`
 
@@ -80,6 +81,27 @@ database implement these functions.
 Our database is suseptible to SQL injection. This could be fixed by using prepared statements, 
 but we are not going to do this. Instead we are going to create a user that doesn't have access
 to sensitive data and use that to preform our SQL statements.
+
+To create a new user in the database you need to log into mysql as a user with permissions to 
+create a user (for example `root`). Then you can run
+```
+CREATE USER 'username'@'host' IDENTIFIED BY 'password';
+```
+set `'host'` to `'localhost'` to only grant permissions from localhost, or `'%'` to grant permissions
+from any host. Run 
+```
+SHOW GRANTS FOR 'username'@'host';
+```
+to see the permissions that a user has. You will see that the `USAGE` permission is given for all
+tables and databases, this is MySQL for having no permissions for any databases or tables. To 
+grant any permissions run 
+```
+GRANT permission ON database.table TO 'username'@'host';
+```
+or if you want to grant permissions for specific collumns run
+```
+GRANT permission (collumn1, collumn2, ...) ON database.table TO 'username'@'host';
+```
 
 (For the tech stack that lifesupport uses, SQL injections are prevented by using prisma syntax 
 for accessing the database. Even so we should still limit the access of our users so that they
