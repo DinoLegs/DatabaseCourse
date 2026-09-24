@@ -23,3 +23,5 @@ for (username, password) in cursor:
 cursor.execute("INSERT INTO profile VALUES ('name', 'pass')") # this will fail if run twice without changing values
 
 cnx.commit() # this is neccesary to perform the insert
+
+cnx.close()
