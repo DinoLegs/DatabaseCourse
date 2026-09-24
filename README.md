@@ -11,11 +11,17 @@ First create a python virtual environment
 `python -m venv .venv`
 
 then activate that environment
+
 Bash:
+
 `source .venv/bin/activate`
+
 Windows cmd:
+
 `.venv/Scripts/activate.bat`
+
 Windows powershell:
+
 `.venv/Scripts/Activate.ps1`
 
 Then install the required packages:
