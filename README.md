@@ -40,7 +40,7 @@ with base stats and you get a boost to your stats for each level given by the fo
 
 `stat = baseStat + modifier * level`
 
-the base stats and modifier are given by the below tables:
+the base stats and modifier are given by the tables below:
 ```
 Barbarian:
 |Stat |Base  |Modifier |
