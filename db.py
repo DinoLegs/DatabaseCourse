@@ -6,8 +6,8 @@ def connect():
         host='localhost',
         port=3306,
         user='root',
-        password="<root_password>",
-        database='courseDB'
+        password='<root_password>',
+        database='<db_name>'
     )
     return connection
 
