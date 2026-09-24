@@ -1,6 +1,6 @@
 # Orbit database and mysql course
 
-This repo is for the orbit database and mysql course fall 2026. 
+This repo is for the orbit database and mysql. 
 For documentation for how to use the mysql python connector look [here](https://dev.mysql.com/doc/connector-python/en/)
 For documentation on general use of mysql look [here](https://www.w3schools.com/mysql/default.asp)
 
