@@ -41,7 +41,7 @@ with base stats and you get a boost to your stats for each level given by the fo
 `stat = baseStat + modifier * level`
 
 the base stats and modifier are given by the below tables:
-`
+```
 Barbarian:
 |Stat |Base  |Modifier |
 |Str  |10    |2        |
@@ -62,7 +62,7 @@ Rouge:
 |Dex  |15    |1.5      |
 |Con  |7     |1        |
 |Int  |8     |0.5      |
-`
+```
 
 Every character can also have weapons, for example "Basic Sword", "Hammer of Destruction" and 
 "Wand of Superior Intelligence". For "Hammer of Destruction" you need a strength larger or equal 
