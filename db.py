@@ -6,22 +6,53 @@ def connect():
         host='localhost',
         port=3306,
         user='root',
-        password='<root_password>',
-        database='<db_name>'
+        password='<password>',
+        database='<database>'
     )
     return connection
 
 # Create a new character
-def create_character(profile_name, character_name, class_name):
+def create_profile(profile_name, password):
     cnx = connect()
+    cursor = cnx.cursor()
 
-    # implement the function
+    cursor.execute(f'''INSERT INTO user VALUES 
+        ('{profile_name}', '{password}')''')
 
+    cnx.commit()
     cnx.close()
 
 # Change level of a character
 def set_character_level(profile_name, character_name, level):
-    pass
+    cnx = connect()
+    cursor = cnx.cursor()
+
+    cursor.execute(f'''UPDATE characters 
+        SET characterLevel = '{level}'
+        WHERE username = '{profile_name}' 
+        AND characterName = '{character_name}' ''')
+
+    cnx.commit()    
+    cnx.close()
+
+# Return a list of all characters a profile has
+def get_characters_of_player(profile_name):
+    cnx = connect()
+    cursor = cnx.cursor()
+
+    cursor.execute(f'''SELECT characterName FROM user
+        INNER JOIN characters
+        ON characters.username = user.username
+        WHERE user.username = '{profile_name}'
+        ''', map_results=True)
+
+    
+    names = cursor.fetchall()
+    print(names)
+    while cursor.nextset():
+        names = cursor.fetchall()
+        print(names)
+    cnx.close()
 
 # Retrun a list of all weapons a character has
 def get_weapons_of_character(profile_name, character_name):
@@ -29,10 +60,6 @@ def get_weapons_of_character(profile_name, character_name):
 
 # Give a character a new weapon
 def give_character_new_weapon(profile_name, character_name, weapon):
-    pass
-
-# Return a list of all characters a profile has
-def get_characters_of_player(profile_name):
     pass
 
 # Return a list of the stats of a specified character
@@ -53,4 +80,4 @@ def get_all_available_weapons():
 
 if __name__ == "__main__":
     # Debug your code here!
-    pass
+    get_characters_of_player("a'; SELECT * FROM user WHERE ''='")
